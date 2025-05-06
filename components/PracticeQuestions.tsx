@@ -12,6 +12,7 @@ const PracticeQuestions = () => {
     const [answers, setAnswers] = useState({});
     const [results, setResults] = useState({});
     const [loading, setLoading] = useState(false);
+    const [checkLoading, setCheckLoading] = useState(false);
 
     const handleGenerate = async () => {
         setLoading(true);
@@ -31,10 +32,14 @@ const PracticeQuestions = () => {
         const userAnswer = answers[question];
         if (!userAnswer) return;
         try {
+            setCheckLoading(true)
             const res = await evaluateAnswer(question, userAnswer, subject);
+
             setResults(prev => ({ ...prev, [question]: res.data }));
         } catch (error) {
             alert('Error evaluating answer');
+        } finally {
+            setCheckLoading(false)
         }
     };
 
@@ -71,11 +76,19 @@ const PracticeQuestions = () => {
                         className="mt-2"
                         disabled={!answers[q.question]}
                     >
-                        Check
+                        {answers[q.question] && checkLoading ? "Checking ..." : "Check"}
                     </Button>
                     {results[q.question] && (
-                        <p className="mt-2 text-green-600">Result: {results[q.question].evaluation}</p>
+                        <div className="mt-4 p-4 rounded-lg bg-green-50 border border-green-200 shadow-sm">
+                            <p className="text-sm font-medium text-green-700">
+                                ✅ <span className="font-semibold">Score:</span> {results[q.question].score}
+                            </p>
+                            <p className="mt-1 text-sm text-green-700">
+                                💬 <span className="font-semibold">Feedback:</span> {results[q.question].feedback}
+                            </p>
+                        </div>
                     )}
+
                 </div>
             ))}
         </div>

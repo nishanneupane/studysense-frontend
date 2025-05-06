@@ -3,10 +3,12 @@ import { useState } from 'react';
 import { uploadNote } from '../lib/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useRouter } from 'next/navigation';
 
-const UploadForm = ({ subject, onUpload }) => {
+const UploadForm = ({ subject }) => {
     const [files, setFiles] = useState([]);
     const [uploading, setUploading] = useState(false);
+    const router = useRouter()
 
     const handleUpload = async () => {
         if (files.length === 0) return;
@@ -14,7 +16,7 @@ const UploadForm = ({ subject, onUpload }) => {
         try {
             await uploadNote(subject, files);
             setFiles([]);
-            onUpload();
+            router.refresh();
             alert('Notes uploaded successfully!');
         } catch (error) {
             alert('Error uploading notes: ' + error.message);
