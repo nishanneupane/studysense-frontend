@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000"; // Replace with your FastAPI URL
+const API_URL = "http://localhost:8001"; // Replace with your FastAPI URL
 
 export const getSubjects = () => axios.get(`${API_URL}/subjects`);
 export const getNotes = (subject) => axios.get(`${API_URL}/notes/${subject}`);
