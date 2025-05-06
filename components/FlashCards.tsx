@@ -18,6 +18,7 @@ const Flashcards = () => {
         try {
             const res = await generateFlashcards(subject, numFlashcards);
             setFlashcards(res.data);
+            console.log(res.data)
             setFlipped({});
         } catch (error) {
             alert('Error generating flashcards');
@@ -50,19 +51,25 @@ const Flashcards = () => {
                 </Button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {flashcards.map((fc, index) => (
-                    <Card
-                        key={index}
-                        className="cursor-pointer hover:shadow-lg transition-shadow"
-                        onClick={() => toggleFlip(index)}
-                    >
-                        <CardContent className="p-6 h-40 flex items-center justify-center">
-                            <p className="text-center">
-                                {flipped[index] ? fc.back : fc.front}
-                            </p>
-                        </CardContent>
-                    </Card>
-                ))}
+                {flashcards.map((fc, index) => {
+                    const gradientVariants = ['gradient-1', 'gradient-2', 'gradient-3', 'gradient-4', 'gradient-5'];
+                    const randomGradient = gradientVariants[index % gradientVariants.length]; // rotate for consistency
+
+                    return (
+                        <Card
+                            key={index}
+                            onClick={() => toggleFlip(index)}
+                            className={`cursor-pointer transform hover:scale-102 duration-150 rounded-xl overflow-hidden shadow-[0_10px_25px_rgba(0,0,0,0.5)] ${randomGradient} bg-[length:300%_300%] animate-gradient-hard border border-neutral-800`}
+                        >
+                            <CardContent className="p-6 h-40 flex items-center justify-center">
+                                <p className="text-center text-gray-100 text-lg font-medium tracking-wide">
+                                    {flipped[index] ? fc.answer : fc.question}
+                                </p>
+                            </CardContent>
+                        </Card>
+                    );
+                })}
+
             </div>
         </div>
     );

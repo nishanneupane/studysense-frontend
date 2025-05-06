@@ -1,4 +1,7 @@
+"use client";
+import { motion } from 'framer-motion';
 import SubjectList from '../components/SubjectList';
+import { Button } from '@/components/ui/button';
 
 export default function Home() {
   return (

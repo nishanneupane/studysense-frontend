@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
 const SubjectList = () => {
-  const [subjects, setSubjects] = useState([]);
+  const [subjects, setSubjects] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 

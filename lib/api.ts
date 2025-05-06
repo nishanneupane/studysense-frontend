@@ -11,11 +11,13 @@ export const uploadNote = (subject, files) => {
     headers: { "Content-Type": "multipart/form-data" },
   });
 };
+
 export const askQuestion = (question, subject) =>
   axios.post(`${API_URL}/ask`, { question, subject });
 export const generatePracticeQuestions = (subject, num_questions) =>
   axios.post(`${API_URL}/practice`, { subject, num_questions });
 export const evaluateAnswer = (question, user_answer, subject) =>
   axios.post(`${API_URL}/evaluate`, { question, user_answer, subject });
+
 export const generateFlashcards = (subject, num_flashcards) =>
   axios.post(`${API_URL}/flashcards`, { subject, num_flashcards });

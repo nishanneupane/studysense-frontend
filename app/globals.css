@@ -120,3 +120,86 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+
+.gradient-1 {
+  background-image: linear-gradient(135deg, #4b6cb7, #182848); /* cool blue */
+}
+
+.gradient-2 {
+  background-image: linear-gradient(135deg, #1e3c72, #2a5298); /* deep ocean */
+}
+
+.gradient-3 {
+  background-image: linear-gradient(135deg, #b24592, #f15f79); /* rich rose purple */
+}
+
+.gradient-4 {
+  background-image: linear-gradient(135deg, #457fca, #5691c8); /* steel blue */
+}
+
+.gradient-5 {
+  background-image: linear-gradient(135deg, #f3904f, #3b4371); /* warm fire & indigo */
+}
+
+.gradient-6 {
+  background-image: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* dark teal */
+}
+
+.gradient-7 {
+  background-image: linear-gradient(135deg, #8e2de2, #4a00e0); /* violet royalty */
+}
+
+.gradient-8 {
+  background-image: linear-gradient(135deg, #fc6076, #ff9a44); /* coral sunset */
+}
+
+
+@keyframes gradient-hard {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-hard {
+  animation: gradient-hard 8s ease infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+
+@keyframes gradient-hard {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fade {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-gradient-hard {
+  animation: gradient-hard 8s ease infinite;
+}
+
+.dot {
+  transition: opacity 0.2s ease;
+}
