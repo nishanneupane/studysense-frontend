@@ -21,3 +21,23 @@ export const evaluateAnswer = (question, user_answer, subject) =>
 
 export const generateFlashcards = (subject, num_flashcards) =>
   axios.post(`${API_URL}/flashcards`, { subject, num_flashcards });
+
+export const deleteSubject = (subject) => {
+  axios.delete(`${API_URL}/subject/${subject}`)
+}
+
+export const saveFlashcards = (flashcards) => {
+  flashcards.map((card) => {
+    axios.post(`${API_URL}/flashcards/save/`, {
+      question: card.question,
+      answer: card.answer,
+    })
+  })
+}
+
+export const saveSingleFlashcard = (flashcard) => {
+    axios.post(`${API_URL}/flashcards/save/`, {
+      question: flashcard.question,
+      answer: flashcard.answer,
+    })
+}

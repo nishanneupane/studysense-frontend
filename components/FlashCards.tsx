@@ -1,10 +1,12 @@
 "use client"
 
 import { useState } from 'react';
-import { generateFlashcards } from '../lib/api';
+import { generateFlashcards, saveFlashcards, saveSingleFlashcard } from '../lib/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 const Flashcards = () => {
     const [subject, setSubject] = useState('');
@@ -12,13 +14,16 @@ const Flashcards = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [flipped, setFlipped] = useState({});
     const [loading, setLoading] = useState(false);
+    const router = useRouter()
 
     const handleGenerate = async () => {
         setLoading(true);
         try {
             const res = await generateFlashcards(subject, numFlashcards);
             setFlashcards(res.data);
-            console.log(res.data)
+            if (res.data.length <= 0) {
+                toast.error("Please upload file before generating flashcard.")
+            }
             setFlipped({});
         } catch (error) {
             alert('Error generating flashcards');
@@ -26,6 +31,27 @@ const Flashcards = () => {
             setLoading(false);
         }
     };
+
+    const handleSaveFlashCards = async () => {
+        try {
+            await saveFlashcards(flashcards)
+            toast.success("All Flashcards saved!!")
+            router.refresh()
+        } catch (error) {
+            toast.error("Unable to save flashcards")
+            console.log(error)
+        }
+    }
+    const handleSaveSingleFlashcard = async (flashcard) => {
+        try {
+            await saveSingleFlashcard(flashcard)
+            toast.success("flashcard saved!!")
+            router.refresh()
+        } catch (error) {
+            toast.error("Unable to save flashcard")
+            console.log(error)
+        }
+    }
 
     const toggleFlip = (index) => {
         setFlipped(prev => ({ ...prev, [index]: !prev[index] }));
@@ -50,6 +76,16 @@ const Flashcards = () => {
                     {loading ? 'Generating...' : 'Generate'}
                 </Button>
             </div>
+            {
+                flashcards.length > 0 && (
+                    <Button
+                        variant={"default"}
+                        onClick={() => handleSaveFlashCards()}
+                    >
+                        Save All Flashcards
+                    </Button>
+                )
+            }
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {flashcards.map((fc, index) => {
                     const gradientVariants = ['gradient-1', 'gradient-2', 'gradient-3', 'gradient-4', 'gradient-5'];
@@ -66,6 +102,14 @@ const Flashcards = () => {
                                     {flipped[index] ? fc.answer : fc.question}
                                 </p>
                             </CardContent>
+                            <CardFooter>
+                                <Button
+                                    onClick={() => handleSaveSingleFlashcard(fc)}
+                                    className='bg-white hover:bg-white/80 text-black cursor-pointer'
+                                >
+                                    Save
+                                </Button>
+                            </CardFooter>
                         </Card>
                     );
                 })}
