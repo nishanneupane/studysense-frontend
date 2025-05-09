@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { deleteSubject, getSubjects } from "../lib/api";
+import { deleteSubject, getSubjects } from "@/lib/api";
 import Link from "next/link";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
@@ -17,16 +17,21 @@ const SubjectList = () => {
 
   useEffect(() => {
     getSubjects()
-      .then((res) => setSubjects(res.data))
+      .then((res) => {
+        if (res.data) {
+          setSubjects(res.data)
+        }
+      })
       .catch((err) => {
         console.error(err);
         setError("Failed to load subjects. Please try again later.");
       })
       .finally(() => setLoading(false));
+
   }, []);
 
   const handleDelete = async (subject: string, event: React.MouseEvent) => {
-    event.stopPropagation(); 
+    event.stopPropagation();
     const confirmed = window.confirm(
       `Are you sure you want to delete the subject "${subject}"? This action cannot be undone.`
     );
@@ -72,7 +77,7 @@ const SubjectList = () => {
     );
   }
 
-  if (subjects.length === 0) {
+  if (subjects.length <= 0 || subjects === undefined) {
     return (
       <div className="flex justify-center items-center min-h-[50vh] bg-gradient-to-b from-gray-50 to-gray-100">
         <motion.p
@@ -103,7 +108,7 @@ const SubjectList = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        {subjects.map((subject, index) => (
+        {subjects.length > 0 && subjects.map((subject, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 30 }}
@@ -134,6 +139,7 @@ const SubjectList = () => {
             </Card>
           </motion.div>
         ))}
+
       </motion.div>
     </div>
   );

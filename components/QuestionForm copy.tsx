@@ -92,10 +92,10 @@ const QuestionForm = () => {
                                                 >
                                                     {copied ? <Check size={16} /> : <Copy size={16} />}
                                                 </button>
-                                                   {...props}
-                                                
-                                                    {String(children).replace(/\n$/, '')}
-                                                
+                                                {...props}
+
+                                                {String(children).replace(/\n$/, '')}
+
                                             </div>
                                         ) : (
                                             <code className={className} {...props}>

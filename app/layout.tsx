@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { Toaster } from "sonner";
-import { Home, HelpCircle, Book, FileText } from "lucide-react";
+import { Home, HelpCircle, Book, FileText, Sparkle } from "lucide-react";
 
 
 const geistSans = Geist({
@@ -76,6 +76,14 @@ export default function RootLayout({
                 >
                   <FileText className="w-5 h-5" />
                   <span className="hidden md:inline">Flashcards</span>
+                </Link>
+                <Link
+                  href="/my-flashcards"
+                  className="flex items-center gap-3 px-2 md:px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-800 hover:text-gray-200 transition-colors"
+                  aria-label="Flashcards"
+                >
+                  <Sparkle className="w-5 h-5" />
+                  <span className="hidden md:inline">MyFlashCards</span>
                 </Link>
               </nav>
             </div>

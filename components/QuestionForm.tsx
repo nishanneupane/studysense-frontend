@@ -36,7 +36,9 @@ const QuestionForm = () => {
   useEffect(() => {
     getSubjects()
       .then((res) => {
-        setSubjects(res.data);
+        if (res.data) {
+          setSubjects(res.data);
+        }
         setSubjectsLoading(false);
       })
       .catch((err) => {

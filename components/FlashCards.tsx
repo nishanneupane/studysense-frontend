@@ -34,7 +34,7 @@ const Flashcards = () => {
 
     const handleSaveFlashCards = async () => {
         try {
-            await saveFlashcards(flashcards)
+            await saveFlashcards(flashcards, subject)
             toast.success("All Flashcards saved!!")
             router.refresh()
         } catch (error) {
@@ -44,7 +44,7 @@ const Flashcards = () => {
     }
     const handleSaveSingleFlashcard = async (flashcard) => {
         try {
-            await saveSingleFlashcard(flashcard)
+            await saveSingleFlashcard(flashcard, subject)
             toast.success("flashcard saved!!")
             router.refresh()
         } catch (error) {
