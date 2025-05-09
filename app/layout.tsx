@@ -33,11 +33,11 @@ export default function RootLayout({
       <body className="antialiased bg-gray-50 text-gray-900">
         <div className="flex min-h-screen">
           {/* Sidebar */}
-          <aside className="fixed top-0 left-0 h-screen w-16 md:w-64 bg-gray-900 text-white shadow-lg">
+          <aside className="fixed top-0 left-0 h-screen w-16 md:w-64 bg-white text-gray-900 shadow-md border-r border-gray-200 z-50">
             <div className="p-4 md:p-6">
               {/* Logo */}
               <div className="text-lg md:text-2xl font-bold tracking-tight mb-6 md:mb-8">
-                <Link href="/" className="hover:text-gray-300 transition">
+                <Link href="/" className="hover:text-blue-600 transition">
                   <span className="md:inline hidden">StudySense</span>
                   <span className="inline md:hidden">SS</span>
                 </Link>
@@ -47,7 +47,7 @@ export default function RootLayout({
               <nav className="space-y-2">
                 <Link
                   href="/"
-                  className="flex items-center gap-3 px-2 md:px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-800 hover:text-gray-200 transition-colors"
+                  className="flex items-center gap-3 px-2 md:px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100 text-gray-700 hover:text-blue-600 transition-colors"
                   aria-label="Home"
                 >
                   <Home className="w-5 h-5" />
@@ -55,7 +55,7 @@ export default function RootLayout({
                 </Link>
                 <Link
                   href="/ask-question"
-                  className="flex items-center gap-3 px-2 md:px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-800 hover:text-gray-200 transition-colors"
+                  className="flex items-center gap-3 px-2 md:px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100 text-gray-700 hover:text-blue-600 transition-colors"
                   aria-label="Ask Question"
                 >
                   <HelpCircle className="w-5 h-5" />
@@ -63,7 +63,7 @@ export default function RootLayout({
                 </Link>
                 <Link
                   href="/practice"
-                  className="flex items-center gap-3 px-2 md:px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-800 hover:text-gray-200 transition-colors"
+                  className="flex items-center gap-3 px-2 md:px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100 text-gray-700 hover:text-blue-600 transition-colors"
                   aria-label="Practice"
                 >
                   <Book className="w-5 h-5" />
@@ -71,7 +71,7 @@ export default function RootLayout({
                 </Link>
                 <Link
                   href="/flashcards"
-                  className="flex items-center gap-3 px-2 md:px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-800 hover:text-gray-200 transition-colors"
+                  className="flex items-center gap-3 px-2 md:px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100 text-gray-700 hover:text-blue-600 transition-colors"
                   aria-label="Flashcards"
                 >
                   <FileText className="w-5 h-5" />
@@ -79,8 +79,8 @@ export default function RootLayout({
                 </Link>
                 <Link
                   href="/my-flashcards"
-                  className="flex items-center gap-3 px-2 md:px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-800 hover:text-gray-200 transition-colors"
-                  aria-label="Flashcards"
+                  className="flex items-center gap-3 px-2 md:px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100 text-gray-700 hover:text-blue-600 transition-colors"
+                  aria-label="My Flashcards"
                 >
                   <Sparkle className="w-5 h-5" />
                   <span className="hidden md:inline">MyFlashCards</span>
@@ -88,6 +88,7 @@ export default function RootLayout({
               </nav>
             </div>
           </aside>
+
 
           {/* Main content */}
           <main className="flex-1 ml-16 md:ml-64 p-4 md:p-8">

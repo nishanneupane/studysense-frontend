@@ -16,6 +16,7 @@ const Flashcards = () => {
     const [loading, setLoading] = useState(false);
     const router = useRouter()
 
+
     const handleGenerate = async () => {
         setLoading(true);
         try {
@@ -34,6 +35,7 @@ const Flashcards = () => {
 
     const handleSaveFlashCards = async () => {
         try {
+
             await saveFlashcards(flashcards, subject)
             toast.success("All Flashcards saved!!")
             router.refresh()

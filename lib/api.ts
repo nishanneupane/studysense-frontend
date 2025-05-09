@@ -37,6 +37,9 @@ export const getFlashcards = (subject) =>
 export const generateFlashcards = (subject, num_flashcards) =>
   axiosInstance.post(`${API_URL}/flashcards`, { subject, num_flashcards });
 
+export const createSubject = (subject: string) =>
+  axiosInstance.post(`${API_URL}/subjects`, { subject });
+
 export const deleteSubject = (subject) => {
   return axiosInstance.delete(`${API_URL}/subjects/${subject}`); // Added return and fixed endpoint
 };
